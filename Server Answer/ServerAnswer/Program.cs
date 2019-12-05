@@ -40,7 +40,10 @@ namespace ConsoleApp1
                 "Added Landsman, \"Whatever it is, I'm pretty sure it doesn't even have a point.\"";
 
 
-            string[] words = questonText.Split(' ');
+            questonText = questonText.Replace(",", "");
+            questonText = questonText.Replace(".", "");
+            questonText = questonText.Replace("\"", "");
+            string[] words = questonText.ToLower().Split(' ');
 
             foreach (string word in words)
             {
