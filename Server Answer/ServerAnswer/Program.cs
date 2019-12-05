@@ -43,12 +43,26 @@ namespace ConsoleApp1
             questonText = questonText.Replace(",", "");
             questonText = questonText.Replace(".", "");
             questonText = questonText.Replace("\"", "");
-            string[] words = questonText.ToLower().Split(' ');
+            questonText = questonText.Replace("-", "");
+            var words = questonText.ToLower().Split(' ');
+            Dictionary<string, int> repeatedWords = new Dictionary<string, int>();
 
-            foreach (string word in words)
+            for (int i = 0; i < words.Length; i++)
             {
-                Console.WriteLine(word);
-                //if(word == word)
+                if (repeatedWords.ContainsKey(words[i]))
+                {
+                    int value = repeatedWords[words[i]];
+                    repeatedWords[words[i]] = value + 1;
+                }
+                else
+                {
+                    repeatedWords.Add(words[i], 1);
+                }
+            }
+
+            foreach (KeyValuePair<string, int> kvp in repeatedWords)
+            {
+                Console.WriteLine(kvp.Key + " - " + kvp.Value);
             }
 
 
